@@ -1,0 +1,41 @@
+name = 'Flym'
+description = 'Flym is a HTML5/CSS3 template for corporate and portfolio sites.'
+package = 'Core'
+version = 'VERSION'
+core = '7.x'
+screenshot = 'screenshot.png'
+
+;add css
+stylesheets[all][] =css/normalize.css
+stylesheets[all][] =css/base.css
+stylesheets[all][] =css/style.css
+stylesheets[all][] =css/font-awesome.min.css
+stylesheets[all][] =css/update.css
+
+; add js
+
+scripts[]= js/webfont.js
+scripts[]= js/jquery-1.11.2.min.js
+scripts[]= js/masonry.pkgd.min.js
+scripts[]= js/gallery-js.js
+scripts[]= js/jquery.theme.js
+scripts[]= js/modernizr.js
+scripts[]= js/form.js
+
+scripts[]= js/default.js
+scripts[]= js/jquery.mixitup.min.js
+scripts[]= js/update.js
+
+
+;COLOR SWITCHER
+
+
+;Core regions
+regions[header]        = 'Header'
+regions[search]        = 'Search'
+regions[main_menu]     = 'Main menu'
+regions[slider]        = 'Slider'
+regions[content]       = 'Main content'
+regions[sidebar]       = 'Sidebar'
+regions[section]       = 'Section content'
+

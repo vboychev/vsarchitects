@@ -1,0 +1,151 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the naviteam_block_attributes module.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function naviteam_block_attributes_install() {
+  $schema['block'] = array();
+  naviteam_block_attributes_schema_alter($schema);
+  foreach ($schema['block']['fields'] as $field => $spec) {
+    if (db_field_exists('block', $field)) {
+      watchdog('system', 'Module install: Attempt to recreate field: "%field", when it already exists.', array('%field' => $field), WATCHDOG_WARNING);
+    }
+    else {
+      db_add_field('block', $field, $spec);
+    }
+  }
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function naviteam_block_attributes_uninstall() {
+  $schema['block'] = array();
+  naviteam_block_attributes_schema_alter($schema);
+  foreach ($schema['block']['fields'] as $field => $specs) {
+    db_drop_field('block', $field);
+  }
+}
+
+/**
+ * Implements hook_schema_alter().
+ *
+ * Other modules, such as i18n_block also modify the block database table.
+ */
+function naviteam_block_attributes_schema_alter(&$schema) {
+  if (isset($schema['block'])) {
+    $schema['block']['fields']['naviteam_block_attributes'] = array(
+      'type' => 'varchar',
+      'length' => 255,
+      'not null' => TRUE,
+      'default' => '',
+      'description' => 'String containing the classes for the block.',
+    );
+  }
+}
+
+/**
+ * Alters the structure of {naviteam_block_attributes} schema.
+ */
+function naviteam_block_attributes_update_7100() {
+  // Check if the naviteam_block_attributes table exists to prevent installation profiles
+  // from running this update for versions without the naviteam_block_attributes table.
+  if (db_table_exists('naviteam_block_attributes')) {
+    // Update the schema.
+    db_drop_primary_key('naviteam_block_attributes');
+
+    db_change_field('naviteam_block_attributes', 'module', 'module',
+      array(
+        'type' => 'varchar',
+        'length' => '255',
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'The module to which the block belongs.',
+      )
+    );
+
+    db_change_field('naviteam_block_attributes', 'delta', 'delta',
+      array(
+        'type' => 'varchar',
+        'length' => '255',
+        'not null' => TRUE,
+        'default' => '',
+        'description' => "The ID of the module's block.",
+      )
+    );
+
+    db_change_field('naviteam_block_attributes', 'naviteam_block_attributes', 'naviteam_block_attributes',
+      array(
+        'type' => 'varchar',
+        'length' => '255',
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'String containing the classes for the block.',
+      )
+    );
+
+    // Restore the primary key.
+    db_add_primary_key('naviteam_block_attributes', array('module', 'delta'));
+  }
+}
+
+/**
+ * Fix too long primary key length in {naviteam_block_attributes}.
+ */
+function naviteam_block_attributes_update_7101() {
+  // Ensure the naviteam_block_attributes table exists, which is not true for all versions.
+  if (db_table_exists('naviteam_block_attributes')) {
+    // Drop current primary key.
+    db_drop_primary_key('naviteam_block_attributes');
+
+    db_change_field('naviteam_block_attributes', 'module', 'module', array(
+      'type' => 'varchar',
+      'length' => 64,
+      'not null' => TRUE,
+      'default' => '',
+      'description' => 'The module to which the block belongs.',
+    ));
+    db_change_field('naviteam_block_attributes', 'delta', 'delta', array(
+      'type' => 'varchar',
+      'length' => 32,
+      'not null' => TRUE,
+      'default' => '',
+      'description' => "The ID of the module's block.",
+    ));
+
+    // Create new primary key.
+    db_add_primary_key('naviteam_block_attributes', array('module', 'delta'));
+  }
+}
+
+/**
+ * Migration from naviteam_block_attributes table to new field naviteam_block_attributes in core block table.
+ */
+function naviteam_block_attributes_update_7103() {
+  if (!db_field_exists('block', 'naviteam_block_attributes')) {
+    $schema['block'] = array();
+    naviteam_block_attributes_schema_alter($schema);
+    foreach ($schema['block']['fields'] as $field => $specs) {
+      db_add_field('block', $field, $specs);
+    }
+  }
+
+  if (db_table_exists('naviteam_block_attributes')) {
+    // Migrate all existing records from naviteam_block_attributes table to block table.
+    $result = db_query('SELECT naviteam_block_attributes, module, delta FROM {naviteam_block_attributes}');
+    while ($record = $result->fetchObject()) {
+      db_update('block')
+        ->fields(array('naviteam_block_attributes' => $record->naviteam_block_attributes))
+        ->condition('module', $record->module)
+        ->condition('delta', $record->delta)
+        ->execute();
+    }
+    // Remove the naviteam_block_attributes table.
+    db_drop_table('naviteam_block_attributes');
+  }
+}
