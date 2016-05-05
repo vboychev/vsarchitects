@@ -20,6 +20,7 @@ features[ctools][] = strongarm:strongarm:1
 features[features_api][] = api:2
 features[language][] = bg
 features[language][] = en
+features[variable][] = language_default
 features[variable][] = site_403
 features[variable][] = site_404
 features[variable][] = site_default_country
