@@ -7,6 +7,7 @@
                 $myvoc = taxonomy_vocabulary_machine_name_load($name);
                 $tree = taxonomy_get_tree($myvoc->vid);
                 foreach ($tree as $term) {
+                  $term = i18n_taxonomy_localize_terms($term);
                     print'<li class="filter-iterm"><a class="filter" href="#" data-filter=".' . $term->tid . '">' . $term->name . '</a>
             </li>';
                 }
