@@ -13,6 +13,11 @@ if (isset($node->field_subtitle) && !empty($node->field_subtitle)) {
 }
 
 ?>
+
+<?php if ($page['header']): ?>
+  <?php print render($page['header']); ?>
+<?php endif; ?>
+
 <?php require_once(drupal_get_path('theme', 'flym') . '/tpl/header.tpl.php'); ?>
 <div class="section-wrapper">
     <?php require_once(drupal_get_path('theme', 'flym') . '/tpl/mobi-menu.php'); ?>

@@ -18,6 +18,10 @@ if (isset($node->field_disable_page_title) && !empty($node->field_disable_page_t
 }
 ?>
 
+<?php if ($page['header']): ?>
+  <?php print render($page['header']); ?>
+<?php endif; ?>
+
 <?php require_once(drupal_get_path('theme', 'flym') . '/tpl/header.tpl.php'); ?>
 
 <div class="section-wrapper <?php if ($page['slider']) print 'sec-slider'; ?>">
