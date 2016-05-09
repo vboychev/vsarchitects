@@ -37,6 +37,12 @@ function flym_preprocess_page(&$vars) {
 //    }
 
     drupal_add_js('jQuery.extend(Drupal.settings, { "pathToTheme": "' . base_path() . path_to_theme() . '" });', 'inline');
+
+    if (empty($_SESSION['visited'])) {
+      drupal_add_js('$(window).load(function () { $(".hamburger").trigger("mouseenter"); setInterval(function(){ $(".hamburger").trigger("mouseleave"); }, 3000); });', 'inline');
+      drupal_add_js(drupal_get_path('theme', 'flym') . '/js/expand_left_navigation.js', 'file');
+      $_SESSION['visited'] = 1;
+    }
 }
 
 function flym_preprocess_node(&$vars) {
