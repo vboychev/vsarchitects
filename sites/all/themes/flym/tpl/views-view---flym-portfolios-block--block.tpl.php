@@ -11,11 +11,6 @@
                   print '<li class="filter-iterm">' . l($term->name, NULL, array('attributes' => array('data-filter' => '.' . $term->tid, 'class' => array('filter')), 'fragment' => FALSE)) . '</li>';
                 }
                 ?>
-            <li class="filter-iterm">
-                <a class="w-inline-block filter filter-star" href="#" data-filter=".star">
-                    <i class="fa fa-star fa-2x"></i>
-                </a>
-            </li>
         </ul>
     </div>
 </div>

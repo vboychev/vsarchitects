@@ -1462,8 +1462,8 @@ html.w-mod-js *[data-ix="sub-slider-3"] {
 
 .block-locale{
 	position: absolute;
-    right: 34px;
-    top: 30px;
+    right: 42px;
+    top: 16px;
     z-index: 9999;
     margin-bottom:20px;
 }
@@ -1483,17 +1483,17 @@ html.w-mod-js *[data-ix="sub-slider-3"] {
 	color: #273640;
 }
 .block-locale ul.language-switcher-locale-url li a{
-	color: #273640;
+	color: #f3655e;
 	font-size: 14px;
     font-weight: 700;
 	text-decoration:none;
 }
 .block-locale ul.language-switcher-locale-url li a:hover{
-	text-decoration:underline;
+	text-decoration:underline !important;
 }
 .block-locale ul.language-switcher-locale-url li a.active{
-	color:#f3655e;
-	text-decoration:underline;
+	color:#273640;
+	text-decoration:none;
 }
 ul.filter-list{
 	padding-top:40px;
