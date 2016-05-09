@@ -5,6 +5,15 @@
  */
 
 /**
+ * Implements hook_ctools_plugin_api().
+ */
+function feature_project_images_ctools_plugin_api($module = NULL, $api = NULL) {
+  if ($module == "flexslider" && $api == "flexslider_default_preset") {
+    return array("version" => "1");
+  }
+}
+
+/**
  * Implements hook_views_api().
  */
 function feature_project_images_views_api($module = NULL, $api = NULL) {
