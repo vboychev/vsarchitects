@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Project images feature.
+ */
+
+include_once 'feature_project_images.features.inc';

@@ -88,27 +88,9 @@ if (!$page) {
 
                 <?php if ($post_format == "style1"): ?>
 
-                    <?php
-
-                    foreach ($images as $image) :
-
-                        $url = $node->field_image['und'][$i]['uri'];  //full url 
-
-                        ?>    
-
-                        <div class="spc-bott"> <?php print theme('image_style', array('path' => $url, 'style_name' => 'image1170x603', 'attributes' => array('alt' => $title))); ?></div>                          
-
-                        <?php
-
-                        $i++;
-
-                    endforeach;
-
-                    ?>
-
-
-
-
+                <?php 
+                  print $bau = views_embed_view('project_images', 'default', $node->nid);;
+                ?>
 
                 <?php elseif ($post_format == "style2") : ?>
 

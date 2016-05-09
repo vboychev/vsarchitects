@@ -183,18 +183,18 @@ function flym_breadcrumb($variables) {
 function single_navigation($ntype, $nid, $nav) {
     $current_node = node_load($nid);
 
-    $prev_nid = db_query("SELECT n.nid FROM {node} n WHERE n.type = :type AND n.status = 1 AND n.created < :created  ORDER BY n.created DESC LIMIT 1", array(':created' => $current_node->created, ':type' => $ntype))->fetchField();
+    $prev_nid = db_query("SELECT n.nid FROM {node} n WHERE n.language = :language AND n.type = :type AND n.status = 1 AND n.created < :created  ORDER BY n.created DESC LIMIT 1", array(':created' => $current_node->created, ':type' => $ntype, ':language' => $current_node->language))->fetchField();
 
 
-    $next_nid = db_query("SELECT n.nid FROM {node} n WHERE n.type = :type AND n.status = 1 AND n.created > :created LIMIT 1", array(':created' => $current_node->created, ':type' => $ntype))->fetchField();
+    $next_nid = db_query("SELECT n.nid FROM {node} n WHERE n.language = :language AND n.type = :type AND n.status = 1 AND n.created > :created LIMIT 1", array(':created' => $current_node->created, ':type' => $ntype, ':language' => $current_node->language))->fetchField();
     $link = '';
 
     if ($prev_nid > 0 && $nav == 'prev') {
         $node = node_load($prev_nid);
-        $link .= '<div class="btn-spc"><a href="' . url("node/" . $node->nid) . '" class="button btn-small"><span class="arrow">‹</span>'. t('Previous Project').'</a></div>';
+        $link .= '<div class="btn-spc"><a href="' . url("node/" . $node->nid) . '" class="button btn-small"><span class="arrow">‹</span>' . t('Previous Project') . '</a></div>';
     } elseif ($next_nid > 0 && $nav == 'next') {
         $node = node_load($next_nid);
-        $link .= '  <div class="btn-spc"><a href="' . url("node/" . $node->nid) . '" class="button btn-small">'. t('Next Project').'<span class="arrow a-nxt">›</span></a></div>';
+        $link .= '  <div class="btn-spc"><a href="' . url("node/" . $node->nid) . '" class="button btn-small">' . t('Next Project') . '<span class="arrow a-nxt">›</span></a></div>';
     }
     return $link;
 }
