@@ -9,8 +9,11 @@
         <!-- mobile meta tag -->
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="generator" content="HTML5 Template">
+        
+        <!-- FONT -->
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic&subset=latin,latin-ext,cyrillic,cyrillic-ext' rel='stylesheet' type='text/css'>
+       
         <!-- TITLE -->
-
         <title><?php print $head_title; ?></title>
 
         <?php

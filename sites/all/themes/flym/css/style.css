@@ -35,7 +35,7 @@
 
 body {
   height: 100%;
-  font-family: Raleway, sans-serif;
+  font-family: 'Open Sans', sans-serif;
   color: #bdbdbd;
   font-size: 14px;
   line-height: 20px;
@@ -346,7 +346,7 @@ p {
   padding-top: 50px;
   padding-right: 50px;
   background-color: #273640;
-}
+} 
 
 /*  3. Grid & Filter  */
 
@@ -1458,6 +1458,48 @@ html.w-mod-js *[data-ix="sub-slider-3"] {
   transform: translate(0px, -28px);
 }
 
+/*   custom css   */
+
+.block-locale{
+	position: absolute;
+    right: 34px;
+    top: 30px;
+    z-index: 9999;
+    margin-bottom:20px;
+}
+.block-locale ul.language-switcher-locale-url{
+	list-style:none;
+	margin:0;
+	padding:0;
+	float:right;
+
+}
+.block-locale ul.language-switcher-locale-url li{
+	display:inline;
+	margin-right:3px;
+}
+.block-locale ul.language-switcher-locale-url li.first:after{
+	content:"  |";
+	color: #273640;
+}
+.block-locale ul.language-switcher-locale-url li a{
+	color: #273640;
+	font-size: 14px;
+    font-weight: 700;
+	text-decoration:none;
+}
+.block-locale ul.language-switcher-locale-url li a:hover{
+	text-decoration:underline;
+}
+.block-locale ul.language-switcher-locale-url li a.active{
+	color:#f3655e;
+	text-decoration:underline;
+}
+ul.filter-list{
+	padding-top:40px;
+}
+
+
 /*  10. Ipad Mediaquery  */
 
 @media (max-width: 991px) {
@@ -1537,6 +1579,21 @@ html.w-mod-js *[data-ix="sub-slider-3"] {
   .social-ico {
     display: none;
   }
+  
+  .block-locale{
+	  position:absolute;
+	  top:25px;
+	  right:180px;
+  }
+  .block-locale ul.language-switcher-locale-url li a{
+	  color:#FFF;
+  }
+  .block-locale ul.language-switcher-locale-url li a{
+	  color:#FFF;
+  }
+  .block-locale ul.language-switcher-locale-url li.first:after{ 
+	color: #fff;
+}
 }
 
 /*  10-1. Iphone Landscape Mediaquery  */
@@ -1647,6 +1704,9 @@ html.w-mod-js *[data-ix="sub-slider-3"] {
   .brand-res {
     padding-left: 13px;
   }
+    .block-locale{
+	  right:100px;
+  }
 }
 
 /*  10-2. Iphone Mediaquery  */
@@ -1714,6 +1774,9 @@ html.w-mod-js *[data-ix="sub-slider-3"] {
   }
   .c-slider {
     margin-top: 43%;
+  }
+     .block-locale{
+	  right:70px;
   }
 }
 

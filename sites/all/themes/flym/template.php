@@ -191,10 +191,10 @@ function single_navigation($ntype, $nid, $nav) {
 
     if ($prev_nid > 0 && $nav == 'prev') {
         $node = node_load($prev_nid);
-        $link .= '<div class="btn-spc"><a href="' . url("node/" . $node->nid) . '" class="button btn-small"><span class="arrow">‹</span>Previous Project</a></div>';
+        $link .= '<div class="btn-spc"><a href="' . url("node/" . $node->nid) . '" class="button btn-small"><span class="arrow">‹</span>'. t('Previous Project').'</a></div>';
     } elseif ($next_nid > 0 && $nav == 'next') {
         $node = node_load($next_nid);
-        $link .= '  <div class="btn-spc"><a href="' . url("node/" . $node->nid) . '" class="button btn-small">Next Project<span class="arrow a-nxt">›</span></a></div>';
+        $link .= '  <div class="btn-spc"><a href="' . url("node/" . $node->nid) . '" class="button btn-small">'. t('Next Project').'<span class="arrow a-nxt">›</span></a></div>';
     }
     return $link;
 }
